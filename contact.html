@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>N A K E | Contact Us</title>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">N A K E</div>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="create.html">CREATE DESIGN</a></li>
+            <li><a href="cart.html">CART</a></li>
+            <li><a href="contact.html" style="color: var(--primary);">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <section style="padding: 60px 8%; display: flex; justify-content: center; align-items: center; min-height: 80vh;">
+        <div class="card-panel" style="max-width: 600px; width: 100%; padding: 40px; border-radius: 30px; text-align: center;">
+            <h2 style="font-family: 'Playfair Display'; font-size: 32px; color: var(--text-dark); margin-bottom: 10px;">Hubungi Kami</h2>
+            <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 30px;">Punya pertanyaan khusus atau pesanan dalam jumlah besar? Kami siap membantu!</p>
+            
+            <form action="#">
+                <input type="text" placeholder="Nama Lengkap" 
+                       style="width: 100%; padding: 15px 20px; margin-bottom: 15px; border-radius: 15px; border: 1px solid #eee; background: var(--bg); outline: none; font-size: 14px;">
+                
+                <input type="email" placeholder="Email Anda" 
+                       style="width: 100%; padding: 15px 20px; margin-bottom: 15px; border-radius: 15px; border: 1px solid #eee; background: var(--bg); outline: none; font-size: 14px;">
+                
+                <textarea placeholder="Ceritakan kebutuhanmu..." 
+                          style="width: 100%; padding: 15px 20px; height: 120px; border-radius: 15px; border: 1px solid #eee; background: var(--bg); outline: none; font-size: 14px; margin-bottom: 20px; resize: none;"></textarea>
+                
+                <button type="button" class="btn-dark" style="width: 100%; padding: 15px; border-radius: 15px; border: none; cursor: pointer; font-weight: 600;">Kirim Pesan</button>
+            </form>
+
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px dashed #eee; display: flex; justify-content: center; gap: 20px;">
+                <p style="font-size: 12px; color: var(--text-muted);">📍 Yogyakarta, Sleman</p>
+                <p style="font-size: 12px; color: var(--text-muted);">📞 0812-3456-789</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy;                    2026 N A K E Studio - Digital Business Project
+    </footer>
+
+    <div class="chat-widget">
+        <div class="chat-win" id="chatWin">
+            <div class="chat-header">
+                <span>CakeHelp AI</span>
+                <button onclick="toggleChat()" style="background:none; border:none; color:white; cursor:pointer;">&times;</button>
+            </div>
+            <div class="chat-body" id="chatBody">
+                <div class="ai-msg">Halo! Aku asisten CakeCraft. Tanya soal komposisi, alergi, atau ongkir ya! ✨</div>
+            </div>
+            <div class="q-list">
+                <div class="q-item" onclick="askAI('komposisi')">🍰 Cek Komposisi</div>
+                <div class="q-item" onclick="askAI('alergi')">🛡️ Info Alergi</div>
+                <div class="q-item" onclick="askAI('ongkir')">🚚 Cek Ongkir</div>
+            </div>
+            <a href="https://wa.me/628123456789" class="btn-wa-pill" target="_blank">Hubungi Penjual via WA</a>
+            <div class="chat-footer">
+                <input type="text" id="userInput" placeholder="Ketik...">
+                <button onclick="sendMsg()" style="background:var(--primary-dark); color:white; border:none; width:35px; height:35px; border-radius:50%; cursor:pointer;">➤</button>
+            </div>
+        </div>
+        <button id="chat-btn" onclick="toggleChat()">💬</button>
+    </div>
+
+    <script>
+        function toggleChat() { 
+            const w = document.getElementById('chatWin'); 
+            w.style.display = (w.style.display === 'block') ? 'none' : 'block'; 
+        }
+        function sendMsg() { 
+            const i = document.getElementById('userInput'); 
+            if(i.value.trim()) { askAI(i.value); i.value = ''; } 
+        }
+        function askAI(t) {
+            const b = document.getElementById('chatBody');
+            b.innerHTML += `<div class="user-msg">${t}</div>`;
+            setTimeout(() => {
+                let r = "Maaf, aku belum paham. Tanya soal 'komposisi', 'alergi', atau 'ongkir' ya!";
+                const low = t.toLowerCase();
+                if(low.includes('komposisi')) r = "Kami menggunakan mentega Wijsman, telur segar, dan tepung premium tanpa pengawet.";
+                if(low.includes('alergi')) r = "Produk mengandung gluten, susu, dan telur. Kami memiliki dapur nut-free.";
+                if(low.includes('ongkir')) r = "Flat ongkir Rp 10.000 untuk wilayah Yogyakarta menggunakan kurir internal.";
+                b.innerHTML += `<div class="ai-msg">${r}</div>`;
+                b.scrollTop = b.scrollHeight;
+            }, 600);
+        }
+    </script>
+</body>
+</html>

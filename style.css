@@ -1,0 +1,330 @@
+/* style.css - N A K E Premium Aesthetic Edition */
+:root {
+    --primary: #ff85b3;
+    --primary-dark: #ff4d94; /* Warna Pink untuk Teks & Aksen */
+    --bg-cream: #fdfaf7;      /* Warna Cream untuk Header */
+    --bg-soft-pink: #fff0f6;  /* Warna Soft Pink untuk Background Website */
+    --white: #ffffff;
+    --text-main: #2d2621;
+    --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+/* Background Website jadi Soft Pink Banget */
+body { 
+    background-color: var(--bg-soft-pink); 
+    color: var(--text-main); 
+    overflow-x: hidden; 
+    scroll-behavior: smooth; 
+}
+
+/* --- NAVIGATION (Solid Cream dengan Teks Pink) --- */
+nav {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 20px 8%; 
+    background: var(--bg-cream); /* Warna Cream yang kita pake sekarang */
+    box-shadow: 0 2px 15px rgba(255, 77, 148, 0.05);
+    position: sticky; 
+    top: 0; 
+    z-index: 1000;
+}
+
+/* Logo dan Teks Navigasi jadi Pink */
+.logo { 
+    font-family: 'Playfair Display', serif; 
+    font-size: 26px; 
+    font-weight: 700; 
+    color: var(--primary-dark) !important; 
+    letter-spacing: 5px; 
+}
+
+nav ul { display: flex; list-style: none; gap: 30px; }
+
+nav ul li a { 
+    text-decoration: none; 
+    color: var(--primary-dark) !important; /* Pakai !important agar tidak tertimpa */
+    font-size: 11px; 
+    font-weight: 600; 
+    letter-spacing: 2px; 
+    transition: 0.3s; 
+}
+
+nav ul li a:hover { 
+    opacity: 0.7; 
+}
+
+/* --- FIX UNTUK HERO HOME --- */
+/* --- HERO SECTION: FULL BACKGROUND & LEFT ALIGN --- */
+/* 1. Pertebal Overlay Background agar teks putih lebih kontras */
+.hero-home {
+    background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.35)), 
+                url('assets/backgrounddfix.jpg'); /* Sesuaikan path fotomu */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 10%;
+    margin-top: -85px; 
+}
+
+/* 2. Tambahkan Shadow pada Headline */
+.hero-text-box h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    line-height: 1.1;
+    margin-bottom: 25px;
+    color: var(--white);
+    font-weight: 700;
+    /* Efek Shadow agar teks "Bite into..." terbaca jelas */
+    text-shadow: 2px 4px 20px rgba(0, 0, 0, 0.6); 
+}
+
+/* 3. Tambahkan Shadow pada Subheadline */
+.hero-text-box p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 45px;
+    /* Shadow yang lebih halus untuk teks kecil */
+    text-shadow: 1px 2px 10px rgba(0, 0, 0, 0.5); 
+}
+
+/* 4. Tambahkan Shadow pada Tombol agar terlihat 'Pop Out' */
+.btn-pill {
+    background: var(--primary-dark);
+    color: white;
+    padding: 18px 50px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    display: inline-block;
+    transition: var(--transition);
+    /* Shadow tombol agar tidak menyatu dengan background */
+    box-shadow: 0 10px 25px rgba(255, 77, 148, 0.4); 
+}
+
+/* --- DESIGNER CONTAINER (create.html) --- */
+.builder-container { 
+    display: flex; 
+    padding: 40px 8%; 
+    gap: 40px; 
+    background-color: var(--bg-soft-pink); /* Memastikan background tetap soft pink */
+}
+
+.preview-stage {
+    flex: 1.2; /* Dikecilkan sedikit rasionya agar seimbang */
+    background: var(--white); border-radius: 40px;
+    height: 600px; position: relative; overflow: hidden;
+    display: flex; justify-content: center; align-items: center; box-shadow: var(--shadow-strong);
+}
+
+.layer { position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%); width: 380px; transition: var(--transition); }
+#topping-layer { z-index: 3; bottom: 180px; }
+.slide-down { animation: dropIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+@keyframes dropIn { 0% { opacity: 0; transform: translate(-50%, -250%); } 100% { opacity: 1; transform: translate(-50%, 0); } }
+
+.controls-area { flex: 1; display: flex; flex-direction: column; gap: 20px; }
+.card-panel { background: var(--white); padding: 25px; border-radius: 30px; box-shadow: var(--shadow-soft); }
+
+.options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+.label-box { display: block; padding: 12px; background: var(--bg-cream); border-radius: 15px; text-align: center; cursor: pointer; transition: 0.3s; font-size: 13px; }
+.radio-option input { position: absolute; opacity: 0; }
+.radio-option input:checked + .label-box { background: var(--primary-dark); color: white; font-weight: 600; }
+
+.btn-pill {
+    background: var(--primary-dark); color: white; border: none; padding: 18px;
+    border-radius: 50px; width: 100%; font-weight: 700; font-size: 15px;
+    cursor: pointer; transition: var(--transition); box-shadow: 0 10px 25px rgba(255, 77, 148, 0.3);
+    text-align: center; display: block; text-decoration: none; margin-top: 15px;
+}
+
+/* --- LONG RECEIPT WITH QRIS SPACE --- */
+.receipt {
+    background: white; width: 380px; padding: 40px 30px;
+    clip-path: polygon(0% 0%, 5% 1%, 10% 0%, 15% 1%, 20% 0%, 25% 1%, 30% 0%, 35% 1%, 40% 0%, 45% 1%, 50% 0%, 55% 1%, 60% 0%, 65% 1%, 70% 0%, 75% 1%, 80% 0%, 85% 1%, 90% 0%, 95% 1%, 100% 0%, 100% 100%, 95% 99%, 90% 100%, 85% 99%, 80% 100%, 75% 99%, 70% 100%, 65% 99%, 60% 100%, 55% 99%, 50% 100%, 45% 99%, 40% 100%, 35% 99%, 30% 100%, 25% 99%, 20% 100%, 15% 99%, 10% 100%, 5% 99%, 0% 100%);
+}
+.receipt-body { font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.6; color: #333; }
+.receipt-dashed { border-top: 1px dashed #ccc; margin: 12px 0; }
+.qris-area {
+    margin: 20px auto; width: 150px; height: 150px;
+    background: #f9f9f9; border: 1px solid #eee;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: #aaa; text-align: center;
+}
+
+/* --- CHAT WIDGET --- */
+.chat-widget { position: fixed; bottom: 30px; right: 30px; z-index: 9999; }
+#chat-btn { background: var(--primary-dark); color: white; width: 60px; height: 60px; border-radius: 50%; border: none; cursor: pointer; font-size: 24px; box-shadow: 0 10px 30px rgba(255, 77, 148, 0.3); display: flex; align-items: center; justify-content: center; }
+.chat-win { display: none; position: absolute; bottom: 80px; right: 0; width: 320px; background: white; border-radius: 25px; box-shadow: var(--shadow-strong); overflow: hidden; animation: slideUp 0.4s ease; }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.chat-header { background: var(--primary-dark); color: white; padding: 15px 20px; font-weight: 600; display: flex; justify-content: space-between; }
+.chat-body { height: 220px; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+.ai-msg { background: #f1f1f1; padding: 10px; border-radius: 15px 15px 15px 5px; font-size: 11px; align-self: flex-start; max-width: 85%; }
+.user-msg { background: var(--primary-dark); color: white; padding: 10px; border-radius: 15px 15px 5px 15px; font-size: 11px; align-self: flex-end; max-width: 85%; }
+.q-list { padding: 12px; display: flex; flex-direction: column; gap: 6px; border-top: 1px solid #eee; }
+.q-item { padding: 8px 12px; border: 1px solid #eee; border-radius: 12px; font-size: 11px; cursor: pointer; }
+.btn-wa-pill { background: #25D366; color: white; text-align: center; padding: 12px; border-radius: 50px; font-weight: 700; display: block; margin: 0 12px 12px; text-decoration: none; font-size: 11px; }
+.chat-footer { padding: 12px; border-top: 1px solid #eee; display: flex; gap: 8px; }
+.chat-footer input { flex: 1; border: none; background: #f5f5f5; padding: 8px 12px; border-radius: 50px; font-size: 11px; outline: none; }
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(74, 55, 40, 0.4); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 3000; }
+.hidden { display: none; }
+
+/* --- UPDATED RECEIPT (SCROLLABLE) --- */
+.receipt {
+    background: white;
+    width: 400px;
+    max-height: 85vh; /* Membatasi tinggi struk */
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-strong);
+    position: relative;
+    clip-path: polygon(0% 0%, 5% 1%, 10% 0%, 15% 1%, 20% 0%, 25% 1%, 30% 0%, 35% 1%, 40% 0%, 45% 1%, 50% 0%, 55% 1%, 60% 0%, 65% 1%, 70% 0%, 75% 1%, 80% 0%, 85% 1%, 90% 0%, 95% 1%, 100% 0%, 100% 100%, 95% 99%, 90% 100%, 85% 99%, 80% 100%, 75% 99%, 70% 100%, 65% 99%, 60% 100%, 55% 99%, 50% 100%, 45% 99%, 40% 100%, 35% 99%, 30% 100%, 25% 99%, 20% 100%, 15% 99%, 10% 100%, 5% 99%, 0% 100%);
+}
+
+.receipt-scroll-area {
+    padding: 40px 30px;
+    overflow-y: auto; /* Fitur Scroll */
+    flex: 1;
+}
+
+/* Custom Scrollbar untuk Receipt agar tetap estetik */
+.receipt-scroll-area::-webkit-scrollbar { width: 4px; }
+.receipt-scroll-area::-webkit-scrollbar-thumb { background: #eee; border-radius: 10px; }
+
+/* Catalog Styling */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+.catalog-item {
+    background: white;
+    padding: 15px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid #f9f9f9;
+}
+.catalog-item img { width: 100%; border-radius: 15px; margin-bottom: 10px; }
+.catalog-item h5 { font-size: 12px; margin-bottom: 5px; }
+.catalog-item p { font-size: 10px; color: var(--primary-dark); font-weight: 700; margin-bottom: 10px; }
+
+/* --- READY-TO-EAT CATALOG --- */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 15px;
+}
+.catalog-item {
+    background: var(--bg-cream);
+    padding: 15px;
+    border-radius: 25px;
+    text-align: center;
+    transition: 0.3s;
+    border: 1px solid transparent;
+}
+.catalog-item:hover { border-color: var(--primary); transform: translateY(-3px); }
+.catalog-item img { width: 100%; border-radius: 15px; margin-bottom: 10px; }
+.catalog-item h5 { font-size: 13px; margin-bottom: 5px; }
+.catalog-item p { font-size: 12px; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px; }
+
+/* --- SCROLLABLE RECEIPT --- */
+.receipt {
+    background: white;
+    width: 400px;
+    max-height: 85vh; /* Biar ga kepotong layar */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    clip-path: polygon(0% 0%, 5% 1%, 10% 0%, 15% 1%, 20% 0%, 25% 1%, 30% 0%, 35% 1%, 40% 0%, 45% 1%, 50% 0%, 55% 1%, 60% 0%, 65% 1%, 70% 0%, 75% 1%, 80% 0%, 85% 1%, 90% 0%, 95% 1%, 100% 0%, 100% 100%, 95% 99%, 90% 100%, 85% 99%, 80% 100%, 75% 99%, 70% 100%, 65% 99%, 60% 100%, 55% 99%, 50% 100%, 45% 99%, 40% 100%, 35% 99%, 30% 100%, 25% 99%, 20% 100%, 15% 99%, 10% 100%, 5% 99%, 0% 100%);
+}
+.receipt-scroll-area {
+    padding: 50px 40px;
+    overflow-y: auto;
+    flex: 1;
+}
+.receipt-scroll-area::-webkit-scrollbar { width: 4px; }
+.receipt-scroll-area::-webkit-scrollbar-thumb { background: #f1f1f1; border-radius: 10px; }
+
+/* --- HOMEPAGE SIGNATURE SECTION --- */
+.signature-section {
+    padding: 100px 10%;
+    background: var(--white);
+    text-align: center;
+}
+.section-title {
+    font-family: 'Playfair Display';
+    font-size: 32px;
+    letter-spacing: 5px;
+    margin-bottom: 50px;
+    color: var(--primary-dark);
+}
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+.menu-card {
+    background: var(--bg-cream);
+    border-radius: 40px;
+    padding: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+.menu-card:hover {
+    transform: translateY(-15px);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-soft);
+}
+.menu-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 30px;
+    margin-bottom: 20px;
+}
+.menu-card h3 {
+    font-family: 'Playfair Display';
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+/* --- DETAIL MODAL --- */
+.detail-modal {
+    background: var(--white);
+    width: 500px;
+    padding: 50px;
+    border-radius: 50px;
+    text-align: center;
+    position: relative;
+    animation: slideUp 0.4s ease;
+}
+.detail-modal img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 30px;
+    margin-bottom: 30px;
+}
+.detail-price {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--primary-dark);
+    margin: 15px 0;
+}
+.detail-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 30px;
+}

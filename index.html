@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>N A K E | Premium Pastry</title>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">N A K E</div>
+        <ul>
+            <li><a href="index.html" style="color: var(--primary-dark);">HOME</a></li>
+            <li><a href="create.html">CREATE DESIGN</a></li>
+            <li><a href="cart.html">CART</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+    </nav>
+
+<header class="hero-home">
+    <div class="hero-text-box">
+        <h1>Bite into <br><span>Your Own Dessert!</span></h1>
+        <p>Platform desain Dessert digital pertama di Yogyakarta. Rancang dessert impianmu secara interaktif dengan bahan premium.</p>
+        <a href="create.html" class="btn-pill">Design Now!</a>
+    </div>
+</header>
+
+    <section class="signature-section" id="signature">
+        <h2 class="section-title">S I G N A T U R E</h2>
+        <div class="menu-grid">
+            <div class="menu-card" onclick="openDetail('Red Velvet Luxe', 35000, 'Kue beludru merah klasik dengan lapisan cream cheese premium dan taburan kacang caramelized.', 'assets/redvelvet.jpg')">
+                <img src="assets/redvelvet.jpg" alt="Red Velvet">
+                <h3>R E D  V E L V E T</h3>
+            </div>
+            <div class="menu-card" onclick="openDetail('Choco Glazed Gold', 18000, 'Donat cokelat pekat dengan topping edible gold leaf untuk sensasi kemewahan di setiap gigitan.', 'assets/chocoglaze.jpeg')">
+                <img src="assets/chocoglaze.jpeg" alt="Choco Glazed">
+                <h3>C H O C O  G L A Z E D</h3>
+            </div>
+            <div class="menu-card" onclick="openDetail('Matcha Mille-Crepes', 45000, '20 lapis crepes tipis dengan krim matcha artisan dari Uji, Jepang.', 'assets/matchacrepes.jpg')">
+                <img src="assets/matchacrepes.jpg" alt="Matcha">
+                <h3>M A T C H A  C R E P E S</h3>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal-overlay" id="detailModal">
+        <div class="detail-modal">
+            <button onclick="closeDetail()" style="position: absolute; top: 25px; right: 25px; background: none; border: none; font-size: 24px; cursor: pointer; color: #aaa;">&times;</button>
+            <img id="mImg" src="" alt="Menu">
+            <h2 id="mTitle" style="font-family: 'Playfair Display'; letter-spacing: 3px;"></h2>
+            <p class="detail-price" id="mPrice"></p>
+            <p class="detail-desc" id="mDesc"></p>
+            <button class="btn-pill" id="addBtn">Tambah ke Keranjang</button>
+        </div>
+    </div>
+
+    <div class="chat-widget">
+        <div class="chat-win" id="chatWin">
+            <div class="chat-header">
+                <span>N A K E  Assistant</span>
+                <button onclick="toggleChat()" style="background:none; border:none; color:white; cursor:pointer;">&times;</button>
+            </div>
+            <div class="chat-body" id="chatBody">
+                <div class="ai-msg">Halo! Aku asisten N A K E. Tanya soal komposisi, alergi, atau ongkir ya! ✨</div>
+            </div>
+            <div class="q-list">
+                <div class="q-item" onclick="askAI('komposisi')">🍰 Cek Komposisi</div>
+                <div class="q-item" onclick="askAI('alergi')">🛡️ Info Alergi</div>
+                <div class="q-item" onclick="askAI('ongkir')">🚚 Cek Ongkir</div>
+            </div>
+            <a href="https://api.whatsapp.com/send?phone=6282132429482&text=Halo%20NAKE!%20Saya%20ingin%20tanya%20tentang%20produk%20dessertnya" 
+                class="btn-wa-pill" 
+                target="_blank" 
+                style="text-decoration: none; display: block; margin-top: 10px; text-align: center;">
+                📱 Hubungi N A K E via WA
+            </a>
+        </div>
+        <button id="chat-btn" onclick="toggleChat()">💬</button>
+    </div>
+
+    <script>
+
+        function openDetail(name, price, desc, img) {
+            document.getElementById('mTitle').innerText = name.toUpperCase();
+            document.getElementById('mPrice').innerText = "Rp " + price.toLocaleString();
+            document.getElementById('mDesc').innerText = desc;
+            document.getElementById('mImg').src = img;
+            document.getElementById('addBtn').onclick = function() { addToCart(name, price); };
+            document.getElementById('detailModal').style.display = 'flex';
+        }
+
+        function closeDetail() { document.getElementById('detailModal').style.display = 'none'; }
+
+        function addToCart(name, price) {
+            let cart = JSON.parse(localStorage.getItem('cakeCart')) || [];
+            cart.push({ type: 'ready', n: name, p: price });
+            localStorage.setItem('cakeCart', JSON.stringify(cart));
+            alert(name + " berhasil ditambahkan ke N A K E bag!");
+            closeDetail();
+        }
+
+        // Logika Chat Widget
+        function toggleChat() { 
+            const w = document.getElementById('chatWin'); 
+            w.style.display = (w.style.display === 'block') ? 'none' : 'block'; 
+        }
+        function sendMsg() { 
+            const i = document.getElementById('userInput'); 
+            if(i.value.trim()) { askAI(i.value); i.value = ''; } 
+        }
+        function askAI(t) {
+            const b = document.getElementById('chatBody');
+            b.innerHTML += `<div class="user-msg">${t}</div>`;
+            setTimeout(() => {
+                let r = "Maaf, aku belum paham. Tanya soal 'komposisi', 'alergi', atau 'ongkir' ya!";
+                const low = t.toLowerCase();
+                if(low.includes('komposisi')) r = "N A K E menggunakan mentega Wijsman, telur segar, dan tepung premium tanpa pengawet.";
+                if(low.includes('alergi')) r = "Produk mengandung gluten, susu, dan telur. Kami memiliki dapur nut-free.";
+                if(low.includes('ongkir')) r = "Flat ongkir Rp 10.000 untuk wilayah Yogyakarta menggunakan kurir internal.";
+                b.innerHTML += `<div class="ai-msg">${r}</div>`;
+                b.scrollTop = b.scrollHeight;
+            }, 600);
+        }
+    </script>
+</body>
+</html>

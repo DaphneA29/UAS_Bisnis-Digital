@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>N A K E | Designer Studio</title>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">N A K E</div>
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="create.html" style="color: var(--primary-dark);">CREATE DESIGN</a></li>
+            <li><a href="cart.html">CART</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <div class="builder-container">
+        <div class="preview-stage">
+            <div id="cartCounter" style="position: absolute; top: 20px; left: 20px; background: var(--primary-dark); color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: 600; display: none; z-index: 10;">
+                <span id="cartCount">0</span> Items in Cart
+            </div>
+            
+            <img id="base-layer" class="layer slide-in-bouncy" style="z-index: 1; bottom: 80px;" src="https://placehold.co/400x120/e8c39e/ffffff?text=Choose+Base&font=playfair-display" alt="Base">
+            
+            <img id="filling-layer" class="layer hidden" style="z-index: 2; bottom: 180px;" src="" alt="Filling">
+            
+            <img id="topping-layer" class="layer hidden" style="z-index: 3; bottom: 240px;" src="" alt="Topping">
+        </div>
+
+        <div class="controls-area" style="max-height: 85vh; overflow-y: auto; padding-right: 15px;">
+            <div class="card-panel">
+                <h4 style="font-family: 'Playfair Display'; margin-bottom: 20px; letter-spacing: 5px;">N A K E  DESIGNER</h4>
+                
+                <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #aaa; margin-bottom: 10px;">1. Base Dessert</p>
+                <div class="options-grid">
+                    <label class="radio-option"><input type="radio" name="base" onchange="setBase('Mille-Crepes', 45000)"><span class="label-box">🍰 Mille-Crepes</span></label>
+                    <label class="radio-option"><input type="radio" name="base" onchange="setBase('Macaroon', 15000)"><span class="label-box">🍪 Macaroon</span></label>
+                    <label class="radio-option"><input type="radio" name="base" onchange="setBase('Cheese-Cake', 40000)"><span class="label-box">🧀 Cheese Cake</span></label>
+                    <label class="radio-option"><input type="radio" name="base" onchange="setBase('Brownies', 25000)"><span class="label-box">🍫 Brownies</span></label>
+                    <label class="radio-option"><input type="radio" name="base" onchange="setBase('Croissant', 28000)"><span class="label-box">🥐 Croissant</span></label>
+                    <label class="radio-option"><input type="radio" name="base" onchange="setBase('Donut', 12000)"><span class="label-box">🍩 Donut</span></label>
+                </div>
+
+                <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #aaa; margin: 25px 0 10px;">2. Core Filling</p>
+                <div class="options-grid">
+                    <label class="radio-option"><input type="radio" name="filling" onchange="setFilling('Choco-Ganache', 8000)"><span class="label-box">🍫 Choco Ganache</span></label>
+                    <label class="radio-option"><input type="radio" name="filling" onchange="setFilling('Matcha-Cream', 9000)"><span class="label-box">🍵 Matcha Cream</span></label>
+                    <label class="radio-option"><input type="radio" name="filling" onchange="setFilling('Vanilla-Bean', 7000)"><span class="label-box">🍦 Vanilla Bean</span></label>
+                    <label class="radio-option"><input type="radio" name="filling" onchange="setFilling('Salted-Caramel', 10000)"><span class="label-box">🍯 Salted Caramel</span></label>
+                    <label class="radio-option"><input type="radio" name="filling" onchange="setFilling('Tiramisu', 12000)"><span class="label-box">☕ Tiramisu</span></label>
+                    <label class="radio-option"><input type="radio" name="filling" onchange="setFilling('Lotus-Biscoff', 11000)"><span class="label-box">🍪 Lotus Biscoff</span></label>
+                </div>
+
+                <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #aaa; margin: 25px 0 10px;">3. Toppings (Max 3)</p>
+                <div class="options-grid">
+                    <label class="radio-option"><input type="checkbox" class="top-check" value="Cherry" data-price="4000" onchange="toggleTopping(this)"><span class="label-box">🍒 Cherry</span></label>
+                    <label class="radio-option"><input type="checkbox" class="top-check" value="Gold-Leaf" data-price="15000" onchange="toggleTopping(this)"><span class="label-box">✨ Gold Leaf</span></label>
+                    <label class="radio-option"><input type="checkbox" class="top-check" value="Whipcream" data-price="5000" onchange="toggleTopping(this)"><span class="label-box">☁️ Whipcream</span></label>
+                    <label class="radio-option"><input type="checkbox" class="top-check" value="Almond-Slice" data-price="6000" onchange="toggleTopping(this)"><span class="label-box">🥜 Almond</span></label>
+                    <label class="radio-option"><input type="checkbox" class="top-check" value="Strawberry" data-price="8000" onchange="toggleTopping(this)"><span class="label-box">🍓 Strawberry</span></label>
+                    <label class="radio-option"><input type="checkbox" class="top-check" value="Oreo-Bits" data-price="5000" onchange="toggleTopping(this)"><span class="label-box">🍪 Oreo Bits</span></label>
+                </div>
+                
+                <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 10px;">
+                    <button class="btn-pill" style="background: var(--primary-dark); color: white;" onclick="addToCart()">+ Tambah ke N A K E bag</button>
+                    <a href="cart.html" class="btn-pill" style="background: white; color: var(--primary-dark); border: 2px solid var(--primary-dark); text-decoration: none; text-align: center; font-size: 14px;">Lihat Keranjang Saya</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cakeCart')) || [];
+        let currentCake = { base: {n:'', p:0}, filling: {n:'', p:0}, toppings: [] };
+
+        // Fungsi pembantu untuk re-trigger animasi
+        function triggerAnim(el) {
+            el.style.animation = 'none';
+            el.offsetHeight; /* trigger reflow */
+            el.style.animation = null;
+            el.classList.add('slide-in-bouncy');
+        }
+
+        function setBase(n, p) { 
+            currentCake.base = {n, p}; 
+            const b = document.getElementById('base-layer');
+            b.src = `https://placehold.co/400x120/e8c39e/634832?text=${n.replace('-', '+')}&font=playfair-display`; 
+            triggerAnim(b);
+        }
+
+        function setFilling(n, p) {
+            currentCake.filling = {n, p};
+            const f = document.getElementById('filling-layer');
+            f.src = `https://placehold.co/360x50/ffccd5/ff4d94?text=${n.replace('-', '+')}&font=playfair-display`;
+            f.classList.remove('hidden');
+            triggerAnim(f);
+        }
+
+        function toggleTopping(el) {
+            const name = el.value; const price = parseInt(el.dataset.price);
+            if (el.checked) {
+                if (currentCake.toppings.length >= 3) { el.checked = false; return alert("Maksimal 3 topping ya!"); }
+                currentCake.toppings.push({n: name, p: price});
+            } else {
+                currentCake.toppings = currentCake.toppings.filter(t => t.n !== name);
+            }
+            updateToppingPreview();
+        }
+
+        function updateToppingPreview() {
+            const tLayer = document.getElementById('topping-layer');
+            if(currentCake.toppings.length > 0) {
+                const last = currentCake.toppings[currentCake.toppings.length - 1];
+                // Background topping dibuat transparan (00000000) agar tidak menutupi kue
+                tLayer.src = `https://placehold.co/380x80/00000000/ff4d94?text=${last.n.toUpperCase()}+ADDED&font=playfair-display`;
+                tLayer.classList.remove('hidden');
+                triggerAnim(tLayer);
+            } else { tLayer.classList.add('hidden'); }
+        }
+
+        function addToCart() {
+            if(!currentCake.base.n) return alert("Pilih base kuemu dulu!");
+            cart.push({ type: 'custom', ...JSON.parse(JSON.stringify(currentCake)) });
+            localStorage.setItem('cakeCart', JSON.stringify(cart));
+            resetDesigner();
+            updateCartCounter();
+            alert("Custom dessert berhasil masuk ke N A K E bag!");
+        }
+
+        function resetDesigner() {
+            currentCake = { base: {n:'', p:0}, filling: {n:'', p:0}, toppings: [] };
+            document.getElementById('base-layer').src = "https://placehold.co/400x120/e8c39e/634832?text=Select+Base&font=playfair-display";
+            document.getElementById('filling-layer').classList.add('hidden');
+            document.getElementById('topping-layer').classList.add('hidden');
+            document.querySelectorAll('input').forEach(i => i.checked = false);
+        }
+
+        function updateCartCounter() {
+            const count = cart.length;
+            const counter = document.getElementById('cartCounter');
+            if(count > 0) {
+                counter.style.display = 'block';
+                document.getElementById('cartCount').innerText = count;
+            } else { counter.style.display = 'none'; }
+        }
+
+        updateCartCounter();
+    </script>
+</body>
+</html>
